@@ -33,10 +33,10 @@ const alertStyles = {
   }
 };
 
-export default function Alert({ 
-  variant = 'info', 
-  title, 
-  children, 
+export default function Alert({
+  variant = 'info',
+  title,
+  children,
   className = '',
   duration = 5000 // default 5 seconds
 }) {
@@ -45,14 +45,14 @@ export default function Alert({
   // Restart timer if children (message content) changes
   useEffect(() => {
     setIsVisible(true);
-    
+
     let timer;
     if (duration > 0) {
       timer = setTimeout(() => {
         setIsVisible(false);
       }, duration);
     }
-    
+
     return () => clearTimeout(timer);
   }, [children, duration]);
 
@@ -77,7 +77,7 @@ export default function Alert({
           <div className={`flex-shrink-0 mr-3 mt-0.5 ${style.iconColor}`}>
             <Icon size={20} weight="fill" />
           </div>
-          
+
           <div className="flex-1">
             {title && (
               <h3 className={`text-sm font-semibold mb-1 ${style.textColor}`}>

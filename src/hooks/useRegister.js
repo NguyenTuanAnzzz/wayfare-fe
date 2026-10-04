@@ -1,7 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Register } from "../apis/apiAuth";
 
 export default function useRegister() {
+
+    const navigate = useNavigate();
+
     const [form, setForm] = useState({
         name: "",
         email: "",
@@ -23,10 +27,11 @@ export default function useRegister() {
             ...form,
             [name]: type === "checkbox" ? checked : value
         });
-    }
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         setMessage("");
         setError("");
 
@@ -39,7 +44,7 @@ export default function useRegister() {
             setError("Vui lòng đồng ý với điều khoản");
             return;
         }
-        
+
         setLoading(true);
 
         try {
@@ -51,10 +56,18 @@ export default function useRegister() {
                 dob: form.dob
             });
 
-            setMessage(result.message || "Đăng ký thành công!");
+            setMessage(result.message);
+
+            navigate("/verify-email", {
+                state: {
+                    email: form.email
+                }
+            });
 
         } catch (err) {
-            setError(err.message || "Có lỗi xảy ra, vui lòng thử lại!");
+            setError(
+                err.message || "Có lỗi xảy ra, vui lòng thử lại!"
+            );
 
         } finally {
             setLoading(false);
@@ -68,5 +81,5 @@ export default function useRegister() {
         loading,
         message,
         error
-    }
+    };
 }
