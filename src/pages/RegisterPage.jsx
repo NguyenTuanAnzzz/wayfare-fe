@@ -117,10 +117,10 @@ export default function RegisterPage() {
             name="agreeTerms"
             checked={form.agreeTerms}
             onChange={handleChange}
-            className="mt-1 w-4 h-4 rounded border-ink/20 text-primary focus:ring-primary/20 cursor-pointer"
+            className="mt-1 w-4 h-4 rounded border-stone-400 text-bay-700 focus:ring-bay-500/30 cursor-pointer"
           />
-          <label htmlFor="agreeTerms" className="text-sm text-ink/70 cursor-pointer select-none">
-            Bằng việc đăng ký, bạn đồng ý với <a href="#" className="font-semibold text-primary hover:underline">Điều khoản dịch vụ</a> và <a href="#" className="font-semibold text-primary hover:underline">Chính sách bảo mật</a> của chúng tôi.
+          <label htmlFor="agreeTerms" className="text-sm text-stone-600 cursor-pointer select-none">
+            Bằng việc đăng ký, bạn đồng ý với <a href="#" className="font-semibold text-bay-700 hover:underline">Điều khoản dịch vụ</a> và <a href="#" className="font-semibold text-bay-700 hover:underline">Chính sách bảo mật</a> của chúng tôi.
           </label>
         </div>
 
@@ -131,16 +131,16 @@ export default function RegisterPage() {
         </div>
       </motion.form>
 
-      <motion.div variants={fadeUpVariant} className="mt-4 pt-4 border-t border-ink/5">
+      <motion.div variants={fadeUpVariant} className="mt-4 pt-4 border-t border-stone-200">
         <Button variant="secondary" className="w-full" icon={GoogleLogo} disabled={loading}>
           Tiếp tục với Google
         </Button>
       </motion.div>
 
       <motion.div variants={fadeUpVariant} className="mt-4 text-center">
-        <p className="text-sm text-ink/70">
+        <p className="text-sm text-stone-600">
           Đã có tài khoản?{' '}
-          <a href="/login" className="font-semibold text-primary hover:underline hover:text-primary/80 transition-colors">
+          <a href="/login" className="font-semibold text-bay-700 hover:underline hover:text-bay-600 transition-colors">
             Đăng nhập ngay
           </a>
         </p>

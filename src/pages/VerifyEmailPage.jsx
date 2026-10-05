@@ -39,7 +39,7 @@ export default function VerifyEmailPage() {
       imageSubtitle="Hội An, Việt Nam"
     >
       <motion.div variants={fadeUpVariant} className="mb-6">
-        <p className="text-sm text-ink/70 leading-relaxed">
+        <p className="text-sm text-stone-600 leading-relaxed">
           Chúng tôi vừa gửi một mã xác thực gồm 6 ký tự đến email <strong className="text-ink">{email || "của bạn"}</strong>. Vui lòng kiểm tra hộp thư đến (hoặc thư rác) và nhập mã vào bên dưới.
         </p>
       </motion.div>
@@ -80,7 +80,7 @@ export default function VerifyEmailPage() {
       </motion.form>
 
       <motion.div variants={fadeUpVariant} className="mt-6 text-center">
-        <p className="text-sm text-ink/70">
+        <p className="text-sm text-stone-600">
           Chưa nhận được email?{' '}
           <button 
             type="button" 
@@ -91,8 +91,8 @@ export default function VerifyEmailPage() {
             }}
             className={`font-semibold transition-colors inline-flex items-center gap-1 ${
               timeLeft > 0 
-                ? 'text-ink/40 cursor-not-allowed' 
-                : 'text-primary hover:underline hover:text-primary/80'
+                ? 'text-stone-400 cursor-not-allowed' 
+                : 'text-bay-700 hover:underline hover:text-bay-600'
             }`}
           >
             <EnvelopeSimple weight="bold" /> 

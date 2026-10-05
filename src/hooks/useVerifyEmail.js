@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { VerifyEmail } from "../apis/apiAuth";
 
 export default function useVerifyEmail() {
@@ -12,6 +12,8 @@ export default function useVerifyEmail() {
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
     const [error, setError] = useState("");
+
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setOtp(e.target.value.replace(/[^a-zA-Z0-9]/g, '').toUpperCase());
@@ -49,6 +51,8 @@ export default function useVerifyEmail() {
             setMessage(
                 result.message || "Xác thực email thành công!"
             );
+
+            navigate("/login")
 
         } catch (err) {
             setError(

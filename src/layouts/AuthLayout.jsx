@@ -32,11 +32,11 @@ export default function AuthLayout({
           <motion.div variants={fadeUpVariant} className="mb-6">
             <div className="flex items-center gap-2.5 mb-1">
               <img src="/src/assets/logo.svg" alt="Wayfare Logo" className="w-8 h-8 drop-shadow-sm" />
-              <h1 className="text-2xl font-heading font-bold text-primary tracking-tight">
+              <h1 className="text-2xl font-heading font-bold text-bay-700 tracking-tight">
                 Wayfare
               </h1>
             </div>
-            <p className="text-sm text-ink/60">Journeys done right.</p>
+            <p className="text-sm text-stone-600">Journeys done right.</p>
           </motion.div>
 
           <motion.h2 variants={fadeUpVariant} className="text-lg font-heading font-semibold mb-4">
@@ -49,7 +49,7 @@ export default function AuthLayout({
       </div>
 
       {/* Right Column: Visual */}
-      <div className="hidden md:block md:w-[50%] lg:w-[55%] xl:w-[60%] h-full relative overflow-hidden bg-limestone">
+      <div className="hidden md:block md:w-[50%] lg:w-[55%] xl:w-[60%] h-full relative overflow-hidden bg-stone-50">
         <motion.div 
           className="w-full h-full relative"
           initial={{ opacity: 0, scale: 1.05 }}

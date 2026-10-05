@@ -4,31 +4,31 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const alertStyles = {
   success: {
-    bg: 'bg-green-50',
-    border: 'border-green-200',
-    iconColor: 'text-green-500',
-    textColor: 'text-green-800',
+    bg: 'bg-moss-100',
+    border: 'border-moss-500/20',
+    iconColor: 'text-moss-700',
+    textColor: 'text-moss-700',
     icon: CheckCircle
   },
   error: {
-    bg: 'bg-red-50',
-    border: 'border-red-200',
-    iconColor: 'text-red-500',
-    textColor: 'text-red-800',
+    bg: 'bg-lantern-100',
+    border: 'border-lantern-600/20',
+    iconColor: 'text-lantern-700',
+    textColor: 'text-lantern-700',
     icon: XCircle
   },
   warning: {
-    bg: 'bg-amber-50',
-    border: 'border-amber-200',
-    iconColor: 'text-amber-500',
-    textColor: 'text-amber-800',
+    bg: 'bg-turmeric-100',
+    border: 'border-turmeric-500/20',
+    iconColor: 'text-turmeric-700',
+    textColor: 'text-turmeric-700',
     icon: Warning
   },
   info: {
-    bg: 'bg-blue-50',
-    border: 'border-blue-200',
-    iconColor: 'text-blue-500',
-    textColor: 'text-blue-800',
+    bg: 'bg-bay-100',
+    border: 'border-bay-500/20',
+    iconColor: 'text-bay-800',
+    textColor: 'text-bay-800',
     icon: Info
   }
 };

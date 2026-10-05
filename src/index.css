@@ -3,12 +3,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,400..800&display=swap');
 
 @theme {
-  --color-primary: #14505C; /* Bay blue */
-  --color-limestone: #E6EAE8;
+  --color-bay-50: #EEF6F7;
+  --color-bay-100: #D6E8EB;
+  --color-bay-300: #8FBFC8;
+  --color-bay-500: #2A7D8C;
+  --color-bay-600: #1C6573;
+  --color-bay-700: #14505C;
+  --color-bay-800: #0F3F49;
+  --color-bay-900: #0B2F37;
+
+  --color-stone-50: #F6F8F7;
+  --color-stone-100: #E6EAE8;
+  --color-stone-200: #D3D9D6;
+  --color-stone-400: #858F8B;
+  --color-stone-600: #5A6661;
+  --color-stone-700: #3A4642;
+  --color-white: #FFFFFF;
   --color-ink: #1B2428;
-  --color-turmeric: #D9A21B;
-  --color-moss: #5E7A5C;
-  
+
+  --color-turmeric-100: #F8EBC8;
+  --color-turmeric-500: #D9A21B;
+  --color-turmeric-600: #C99112;
+  --color-turmeric-700: #8A6208;
+
+  --color-moss-100: #E3EBE2;
+  --color-moss-500: #5E7A5C;
+  --color-moss-700: #3F5A3E;
+
+  --color-lantern-100: #F6E1DD;
+  --color-lantern-600: #B3402F;
+  --color-lantern-700: #8F2E20;
+
   --font-heading: "Bricolage Grotesque", sans-serif;
   --font-sans: "Be Vietnam Pro", sans-serif;
 }
@@ -16,7 +41,7 @@
 body {
   font-family: var(--font-sans);
   color: var(--color-ink);
-  background-color: var(--color-limestone);
+  background-color: var(--color-stone-50);
 }
 
 h1, h2, h3, h4, h5, h6 {
