@@ -52,3 +52,20 @@ export async function Login(data) {
 
     return result;
 }
+
+export async function Refresh() {
+    const response = await fetch(`${API_URL}/auth/refresh`,{
+            method: "POST",
+            credentials: "include"
+        }
+    );
+
+    const result = await response.json();
+
+    if (!response.ok) {
+        throw new Error(result.message);
+    }
+
+    return result;
+}
+

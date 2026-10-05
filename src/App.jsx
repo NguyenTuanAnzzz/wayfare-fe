@@ -1,15 +1,22 @@
-import React, { useEffect } from 'react';
 import { IconContext } from '@phosphor-icons/react';
 import AppRoute from './routes/AppRoute';
-import AuthProvider from './contexts/AuthContext';
+import useRefresh from './hooks/useRefresh';
+import { useAuth } from './contexts/AuthContext';
+import { useEffect } from 'react';
 function App() {
 
+  const { token } = useAuth();
+  const refresh = useRefresh();
+
+  useEffect(() => {
+    refresh();
+  }, []);
   return (
-    <AuthProvider>
-      <IconContext.Provider value={{ weight: "bold", size: 20 }}>
-        <AppRoute />
-      </IconContext.Provider>
-    </AuthProvider>
+
+    <IconContext.Provider value={{ weight: "bold", size: 20 }}>
+      <AppRoute />
+    </IconContext.Provider>
+
   );
 }
 
