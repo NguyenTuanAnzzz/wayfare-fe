@@ -7,15 +7,19 @@ export default function useLogin() {
 
     const [form, setForm] = useState({
         email: "",
-        password: ""
-    })
+        password: "",
+        rememberMe: false
+    });
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const navigate = useNavigate()
     const handleChange = (e) => {
-        const { name, value } = e.target
-        setForm({ ...form, [name]: value })
+        const { name, value, type, checked } = e.target;
 
+        setForm({
+            ...form,
+            [name]: type === "checkbox" ? checked : value
+        });
     };
     const { setAccessToken } = useAuth();
     const handleSubmit = async (e) => {

@@ -54,6 +54,22 @@ export default function LoginPage() {
           onChange={handleChange}
         />
 
+        <div className="flex items-center justify-between pt-1 pb-1">
+          <label className="flex items-center gap-2 cursor-pointer group">
+            <input
+              type="checkbox"
+              name="rememberMe"
+              checked={form.rememberMe}
+              className="w-4 h-4 rounded border-stone-300 text-bay-600 focus:ring-bay-500 cursor-pointer transition-colors"
+              onChange={handleChange}
+            />
+            <span className="text-sm text-stone-600 group-hover:text-stone-800 transition-colors">Ghi nhớ đăng nhập</span>
+          </label>
+          <a href="/forgot-password" className="text-sm font-medium text-bay-700 hover:text-bay-600 hover:underline transition-colors">
+            Quên mật khẩu?
+          </a>
+        </div>
+
         <div className="pt-2">
           <Button type="submit" className="w-full" icon={SignIn} loading={loading}>
             Đăng nhập

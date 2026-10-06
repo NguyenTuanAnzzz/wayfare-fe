@@ -60,7 +60,8 @@ export default function useRegister() {
 
             navigate("/verify-email", {
                 state: {
-                    email: form.email
+                    email: form.email,
+                    expiresAt: result.expiresAt
                 }
             });
 

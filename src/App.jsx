@@ -5,7 +5,6 @@ import { useAuth } from './contexts/AuthContext';
 import { useEffect } from 'react';
 function App() {
 
-  const { token } = useAuth();
   const refresh = useRefresh();
 
   useEffect(() => {

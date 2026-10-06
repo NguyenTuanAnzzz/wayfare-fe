@@ -41,6 +41,7 @@ export async function Login(data) {
         headers: {
             "Content-Type": "application/json"
         },
+        credentials: "include",
         body: JSON.stringify(data)
     });
 
@@ -59,6 +60,24 @@ export async function Refresh() {
             credentials: "include"
         }
     );
+
+    const result = await response.json();
+
+    if (!response.ok) {
+        throw new Error(result.message);
+    }
+
+    return result;
+}
+
+export async function ResendOtp(data) {
+    const response = await fetch(`${API_URL}/auth/resend-otp`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    });
 
     const result = await response.json();
 
