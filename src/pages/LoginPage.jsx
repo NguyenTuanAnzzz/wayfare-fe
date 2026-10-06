@@ -20,6 +20,10 @@ export default function LoginPage() {
     setSubmitCount(c => c + 1);
     handleSubmit(e);
   };
+  const handleGoogleLogin = () => {
+    window.location.href =
+      "http://localhost:8080/oauth2/authorization/google";
+  };
   return (
     <AuthLayout
       title="Đăng nhập"
@@ -71,14 +75,14 @@ export default function LoginPage() {
         </div>
 
         <div className="pt-2">
-          <Button type="submit" className="w-full" icon={SignIn} loading={loading}>
+          <Button type="submit" className="w-full" icon={SignIn} loading={loading} >
             Đăng nhập
           </Button>
         </div>
       </motion.form>
 
       <motion.div variants={fadeUpVariant} className="mt-5 pt-5 border-t border-stone-200">
-        <Button variant="secondary" className="w-full" icon={GoogleLogo}>
+        <Button variant="secondary" className="w-full" icon={GoogleLogo} onClick={handleGoogleLogin}>
           Tiếp tục với Google
         </Button>
       </motion.div>
