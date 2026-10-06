@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { GoogleLogo, SignIn } from '@phosphor-icons/react';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import Button from '../components/Button';
 import Input from '../components/Input';
 import AuthLayout from '../layouts/AuthLayout';
@@ -15,8 +16,20 @@ export default function LoginPage() {
 
   const { form, loading, error, handleChange, handleSubmit } = useLogin();
   const [submitCount, setSubmitCount] = useState(0);
+  
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [successMessage, setSuccessMessage] = useState(location.state?.message || '');
+
+  // Clear state so on refresh the message doesn't appear again
+  useEffect(() => {
+    if (location.state?.message) {
+      navigate(location.pathname, { replace: true, state: {} });
+    }
+  }, [location, navigate]);
 
   const onFormSubmit = (e) => {
+    setSuccessMessage(''); // clear on submit
     setSubmitCount(c => c + 1);
     handleSubmit(e);
   };
@@ -32,6 +45,12 @@ export default function LoginPage() {
       imageSubtitle="Vịnh Hạ Long"
     >
       <motion.form variants={fadeUpVariant} className="space-y-3" onSubmit={onFormSubmit}>
+
+        {successMessage && (
+          <Alert variant="success">
+            {successMessage}
+          </Alert>
+        )}
 
         {error && (
           <Alert key={`err-${submitCount}`} variant="error">
@@ -69,9 +88,9 @@ export default function LoginPage() {
             />
             <span className="text-sm text-stone-600 group-hover:text-stone-800 transition-colors">Ghi nhớ đăng nhập</span>
           </label>
-          <a href="/forgot-password" className="text-sm font-medium text-bay-700 hover:text-bay-600 hover:underline transition-colors">
+          <Link to="/forgot-password" className="text-sm font-medium text-bay-700 hover:text-bay-600 hover:underline transition-colors">
             Quên mật khẩu?
-          </a>
+          </Link>
         </div>
 
         <div className="pt-2">
@@ -90,9 +109,9 @@ export default function LoginPage() {
       <motion.div variants={fadeUpVariant} className="mt-5 text-center">
         <p className="text-sm text-stone-600">
           Chưa có tài khoản?{' '}
-          <a href="/register" className="font-semibold text-bay-700 hover:underline hover:text-bay-600 transition-colors">
+          <Link to="/register" className="font-semibold text-bay-700 hover:underline hover:text-bay-600 transition-colors">
             Đăng ký ngay
-          </a>
+          </Link>
         </p>
       </motion.div>
     </AuthLayout>

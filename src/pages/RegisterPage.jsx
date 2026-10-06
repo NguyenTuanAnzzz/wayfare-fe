@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { GoogleLogo, UserPlus } from '@phosphor-icons/react';
 import Button from '../components/Button';
@@ -140,9 +141,9 @@ export default function RegisterPage() {
       <motion.div variants={fadeUpVariant} className="mt-4 text-center">
         <p className="text-sm text-stone-600">
           Đã có tài khoản?{' '}
-          <a href="/login" className="font-semibold text-bay-700 hover:underline hover:text-bay-600 transition-colors">
+          <Link to="/login" className="font-semibold text-bay-700 hover:underline hover:text-bay-600 transition-colors">
             Đăng nhập ngay
-          </a>
+          </Link>
         </p>
       </motion.div>
     </AuthLayout>

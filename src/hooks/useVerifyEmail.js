@@ -52,7 +52,7 @@ export default function useVerifyEmail() {
                 result.message || "Xác thực email thành công!"
             );
 
-            navigate("/login")
+            navigate("/login", { state: { message: result.message || "Xác thực email thành công!" } });
 
         } catch (err) {
             setError(
