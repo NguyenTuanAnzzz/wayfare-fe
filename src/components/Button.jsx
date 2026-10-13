@@ -5,9 +5,11 @@ export default function Button({
   variant = 'primary', 
   className = '', 
   isLoading = false,
+  loading = false,
   icon: Icon,
   ...props 
 }) {
+  const loadingState = isLoading || loading;
   const baseClasses = "font-medium text-sm px-4 py-3 rounded-xl transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed";
   
   const variants = {
@@ -21,10 +23,10 @@ export default function Button({
   return (
     <button 
       className={`${baseClasses} ${variants[variant]} ${className}`}
-      disabled={isLoading || props.disabled}
+      disabled={loadingState || props.disabled}
       {...props}
     >
-      {isLoading ? (
+      {loadingState ? (
         <div className="w-5 h-5 border-2 border-current/30 border-t-current rounded-full animate-spin"></div>
       ) : (
         <>

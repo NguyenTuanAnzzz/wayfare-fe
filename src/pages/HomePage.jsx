@@ -23,24 +23,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="bg-stone-50 min-h-screen flex flex-col font-sans text-ink">
-      {/* HEADER */}
-      <header className="w-full px-6 py-4 md:px-12 bg-stone-50/90 backdrop-blur-md border-b border-stone-200 flex justify-between items-center sticky top-0 z-50">
-        <div className="flex items-center gap-3">
-          <img src="/src/assets/logo.svg" alt="Wayfare Logo" className="w-8 h-8 drop-shadow-sm" />
-          <div className="font-heading font-bold text-2xl text-bay-700 tracking-tight">Wayfare</div>
-        </div>
-        <nav className="hidden md:flex gap-8">
-          <a href="#" className="text-bay-700 font-semibold">Trang chủ</a>
-          <a href="#" className="text-stone-600 hover:text-bay-700 font-medium transition-colors">Điểm đến</a>
-          <a href="#" className="text-stone-600 hover:text-bay-700 font-medium transition-colors">Tour của tôi</a>
-        </nav>
-        <div className="flex items-center gap-4">
-          <a href="/login" className="text-bay-700 font-medium hover:underline hover:text-bay-600">Đăng nhập</a>
-          <a href="/register" className="bg-bay-700 text-white px-5 py-2.5 rounded-xl font-medium hover:bg-bay-800 transition-colors active:scale-[0.98]">Đăng ký</a>
-        </div>
-      </header>
-
+    <>
       {/* 1. HERO SECTION */}
       <section className="relative w-full min-h-[calc(100dvh-73px)] max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-12 py-12">
         {/* Left: Text Content */}
@@ -241,7 +224,7 @@ export default function HomePage() {
       </section>
 
       {/* 3. DESTINATIONS SECTION */}
-      <section className="w-full bg-stone-50 py-24 px-6 md:px-12">
+      <section id="destinations" className="w-full bg-stone-50 py-24 px-6 md:px-12">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
             <div>
@@ -279,7 +262,7 @@ export default function HomePage() {
       </section>
 
       {/* 4. FEATURED TOURS SECTION */}
-      <section className="w-full bg-stone-100 py-24 px-6 md:px-12">
+      <section id="tours" className="w-full bg-stone-100 py-24 px-6 md:px-12">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
             <div>
@@ -371,64 +354,6 @@ export default function HomePage() {
           </form>
         </div>
       </section>
-
-      {/* 7. FOOTER */}
-      <footer className="w-full bg-bay-900 text-stone-100 pt-20 pb-10 px-6 md:px-12">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 border-b border-bay-800 pb-12 mb-8">
-          <div className="col-span-1 md:col-span-4 lg:col-span-5">
-            <div className="flex items-center gap-2.5 mb-6">
-              <img src="/src/assets/logo.svg" alt="Wayfare Logo" className="w-8 h-8 opacity-90 brightness-0 invert" />
-              <div className="font-heading font-bold text-3xl text-white tracking-tight">Wayfare</div>
-            </div>
-            <p className="text-stone-100/80 leading-relaxed mb-8 max-w-sm">
-              Journeys done right.<br/>Nền tảng đặt tour du lịch nội địa uy tín, tập trung vào trải nghiệm cốt lõi của từng điểm đến.
-            </p>
-            <div className="space-y-2 text-stone-100/80 text-sm">
-              <p>Email: hotro@wayfare.vn</p>
-              <p>Hotline: 1900 6868</p>
-            </div>
-          </div>
-          
-          <div className="col-span-1 md:col-span-2 lg:col-span-2">
-            <h4 className="font-heading font-bold text-white mb-6 text-lg">Khám phá</h4>
-            <ul className="space-y-4 text-stone-100/70 text-sm">
-              <li><a href="#" className="hover:text-white transition-colors">Vịnh Hạ Long</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Sapa</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Phú Quốc</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Đà Nẵng</a></li>
-            </ul>
-          </div>
-          
-          <div className="col-span-1 md:col-span-3 lg:col-span-2">
-            <h4 className="font-heading font-bold text-white mb-6 text-lg">Về chúng tôi</h4>
-            <ul className="space-y-4 text-stone-100/70 text-sm">
-              <li><a href="#" className="hover:text-white transition-colors">Câu chuyện Wayfare</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Liên hệ đối tác</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Tuyển dụng</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Góc báo chí</a></li>
-            </ul>
-          </div>
-          
-          <div className="col-span-1 md:col-span-3 lg:col-span-3">
-            <h4 className="font-heading font-bold text-white mb-6 text-lg">Hỗ trợ</h4>
-            <ul className="space-y-4 text-stone-100/70 text-sm">
-              <li><a href="#" className="hover:text-white transition-colors">Trung tâm trợ giúp</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Điều khoản dịch vụ</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Chính sách bảo mật</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Quy định hoàn hủy</a></li>
-            </ul>
-          </div>
-        </div>
-        
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-stone-100/50">
-          <p>&copy; {new Date().getFullYear()} Wayfare. Không ngừng vươn xa.</p>
-          <div className="flex items-center gap-6">
-            <a href="#" className="hover:text-white transition-colors">Facebook</a>
-            <a href="#" className="hover:text-white transition-colors">Instagram</a>
-            <a href="#" className="hover:text-white transition-colors">Youtube</a>
-          </div>
-        </div>
-      </footer>
-    </div>
+    </>
   );
 }
