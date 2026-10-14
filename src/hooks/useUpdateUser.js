@@ -17,40 +17,61 @@ export default function useUpdateUser() {
     useEffect(() => {
         if (user) {
             setForm({
-                name: user.name,
-                phone: user.phone,
-                dob: user.dob
+                name: user.name || "",
+                phone: user.phone || "",
+                dob: user.dob || ""
             });
         }
     }, [user]);
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const { name, value, files } = e.target;
 
         setForm((prev) => ({
             ...prev,
-            [name]: value
+            [name]: name === "avatar" ? files[0] : value
         }));
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        if (e && typeof e.preventDefault === "function") {
+            e.preventDefault();
+        }
 
         setError("");
         setLoading(true);
 
+        const formData = new FormData();
+
         try {
-            const result = await UpdateUser(fetchWithAuth, form);
+            formData.append("name", form.name);
+            formData.append("phone", form.phone);
+            formData.append("dob", form.dob);
+
+            if (form.avatar) {
+                formData.append("avatar", form.avatar);
+            }
+            const result = await UpdateUser(fetchWithAuth, formData);
 
             if (result) {
-                setUser(result);
+                setUser((prev) => ({ ...prev, ...result }));
+                setForm((prev) => ({ ...prev, avatar: null }));
+                return result;
             }
         } catch (error) {
             setError(error.message);
+            return null;
         } finally {
             setLoading(false);
         }
     };
+
+    // Tự động upload khi người dùng chọn avatar mới
+    useEffect(() => {
+        if (form.avatar) {
+            handleSubmit();
+        }
+    }, [form.avatar]);
 
     return {
         loading,

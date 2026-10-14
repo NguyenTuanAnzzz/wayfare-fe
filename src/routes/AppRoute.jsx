@@ -12,6 +12,8 @@ import VerifyEmailPage from '../pages/VerifyEmailPage';
 import OAuth2CallbackPage from '../pages/OAuth2CallbackPage';
 import ForgotPasswordPage from '../pages/ForgotPasswordPage';
 import ResetPasswordPage from '../pages/ResetPasswordPage';
+import UpdatePhoneAndDobPage from '../pages/UpdatePhoneAndDobPage';
+import ProtectRoute from './ProtectRoute';
 
 export default function AppRoute() {
     return (
@@ -21,10 +23,12 @@ export default function AppRoute() {
                     <Route path="/" element={<HomePage />} />
                 </Route>
 
-                <Route path="/profile" element={<ProfileLayout />}>
-                    <Route index element={<ProfilePage />} />
-                    <Route path="bookings" element={<MyBookingsPage />} />
-                    <Route path="security" element={<SecurityPage />} />
+                <Route element={<ProtectRoute />}>
+                    <Route path="/profile" element={<ProfileLayout />}>
+                        <Route index element={<ProfilePage />} />
+                        <Route path="bookings" element={<MyBookingsPage />} />
+                        <Route path="security" element={<SecurityPage />} />
+                    </Route>
                 </Route>
 
                 <Route path="/login" element={<LoginPage />} />
@@ -35,6 +39,10 @@ export default function AppRoute() {
                 <Route
                     path="/oauth2/callback"
                     element={<OAuth2CallbackPage />}
+                />
+                <Route
+                    path="/update-phone-and-dob"
+                    element={<UpdatePhoneAndDobPage />}
                 />
             </Routes>
         </BrowserRouter>

@@ -34,7 +34,7 @@ export default function ProfilePage() {
           <Input
             label="Họ và tên"
             id="name"
-            value={form.name}
+            value={form.name || ''}
             placeholder="Nhập họ và tên đầy đủ"
             name="name"
             onChange={handleChange}
@@ -44,15 +44,15 @@ export default function ProfilePage() {
             label="Địa chỉ Email"
             id="email"
             type="email"
-            defaultValue={user?.email}
+            value={user?.email || ''}
             disabled
           />
 
           <Input
             label="Số điện thoại"
             id="phone"
-            value={form.phone}
-            placeholder="0912 483 076"
+            value={form.phone || ''}
+            placeholder="0912483076"
             name="phone"
             onChange={handleChange}
           />
@@ -61,7 +61,7 @@ export default function ProfilePage() {
             label="Ngày sinh"
             id="dob"
             type="date"
-            value={form.dob}
+            value={form.dob ? String(form.dob).substring(0, 10) : ''}
             name="dob"
             onChange={handleChange}
           />

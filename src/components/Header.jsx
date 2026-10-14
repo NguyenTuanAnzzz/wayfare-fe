@@ -2,16 +2,16 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import logo from '../assets/logo.svg';
 import { useAuth } from '../contexts/AuthContext';
-import { 
-  User, 
-  Ticket, 
-  SignOut, 
-  CaretDown, 
-  List, 
-  X, 
-  ShieldCheck, 
-  Compass, 
-  SuitcaseRolling 
+import {
+  User,
+  Ticket,
+  SignOut,
+  CaretDown,
+  List,
+  X,
+  ShieldCheck,
+  Compass,
+  SuitcaseRolling
 } from '@phosphor-icons/react';
 
 export default function Header() {
@@ -44,7 +44,6 @@ export default function Header() {
     if (parts.length === 1) return parts[0][0].toUpperCase();
     return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
   };
-
   return (
     <header className="w-full px-6 py-3.5 md:px-12 bg-stone-50/90 backdrop-blur-md border-b border-stone-200 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -63,22 +62,21 @@ export default function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
-          <Link 
-            to="/" 
-            className={`font-medium transition-colors ${
-              location.pathname === '/' ? 'text-bay-700 font-semibold' : 'text-stone-600 hover:text-bay-700'
-            }`}
+          <Link
+            to="/"
+            className={`font-medium transition-colors ${location.pathname === '/' ? 'text-bay-700 font-semibold' : 'text-stone-600 hover:text-bay-700'
+              }`}
           >
             Trang chủ
           </Link>
-          <a 
-            href="/#destinations" 
+          <a
+            href="/#destinations"
             className="text-stone-600 hover:text-bay-700 font-medium transition-colors"
           >
             Điểm đến
           </a>
-          <a 
-            href="/#tours" 
+          <a
+            href="/#tours"
             className="text-stone-600 hover:text-bay-700 font-medium transition-colors"
           >
             Tour nổi bật
@@ -118,10 +116,10 @@ export default function Header() {
                   </p>
                 </div>
 
-                <CaretDown 
-                  size={14} 
-                  weight="bold" 
-                  className={`text-stone-500 transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`} 
+                <CaretDown
+                  size={14}
+                  weight="bold"
+                  className={`text-stone-500 transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`}
                 />
               </button>
 
@@ -176,14 +174,14 @@ export default function Header() {
             </div>
           ) : (
             <div className="flex items-center gap-3">
-              <Link 
-                to="/login" 
+              <Link
+                to="/login"
                 className="text-stone-700 hover:text-bay-700 font-medium px-4 py-2 text-sm transition-colors rounded-xl hover:bg-stone-100"
               >
                 Đăng nhập
               </Link>
-              <Link 
-                to="/register" 
+              <Link
+                to="/register"
                 className="bg-bay-700 text-white px-5 py-2.5 text-sm rounded-xl font-medium hover:bg-bay-800 transition-colors active:scale-[0.98] shadow-sm inline-flex items-center gap-1.5"
               >
                 <span>Đăng ký</span>
@@ -209,20 +207,20 @@ export default function Header() {
       {mobileMenuOpen && (
         <div className="md:hidden mt-3 pt-3 border-t border-stone-200 flex flex-col gap-3 pb-2 animate-in fade-in duration-150">
           <nav className="flex flex-col gap-1">
-            <Link 
-              to="/" 
+            <Link
+              to="/"
               className="px-3 py-2 rounded-lg text-sm font-medium text-stone-700 hover:bg-stone-100 hover:text-bay-700"
             >
               Trang chủ
             </Link>
-            <a 
-              href="/#destinations" 
+            <a
+              href="/#destinations"
               className="px-3 py-2 rounded-lg text-sm font-medium text-stone-700 hover:bg-stone-100 hover:text-bay-700"
             >
               Điểm đến
             </a>
-            <a 
-              href="/#tours" 
+            <a
+              href="/#tours"
               className="px-3 py-2 rounded-lg text-sm font-medium text-stone-700 hover:bg-stone-100 hover:text-bay-700"
             >
               Tour nổi bật

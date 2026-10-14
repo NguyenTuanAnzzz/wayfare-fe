@@ -27,25 +27,43 @@ export const AuthProvider = ({ children }) => {
             setUser(userData);
             return userData;
         } catch (error) {
-            console.error("Lỗi khi tải thông tin người dùng:", error);
             setUser(null);
             return null;
         }
     };
 
-    // 1. Khi mở ứng dụng: tự động kiểm tra cookie refresh token
+    // 1. Khi mở / refresh ứng dụng: tự động kiểm tra cookie refresh token và lấy user TRƯỚC KHI tắt loading
     useEffect(() => {
         const initAuth = async () => {
             try {
                 const res = await Refresh();
                 if (res?.accessToken) {
                     setAccessToken(res.accessToken);
+
+                    // Tải luôn thông tin user trước khi tắt loading để ProtectRoute không bị đá sang /login
+                    const userRes = await fetch(`${import.meta.env.VITE_API_URL}/me`, {
+                        headers: {
+                            Authorization: `Bearer ${res.accessToken}`
+                        }
+                    });
+
+                    if (userRes.ok) {
+                        const userData = await userRes.json();
+                        setUser(userData);
+                    } else {
+                        setAccessToken(null);
+                        setUser(null);
+                    }
+                } else {
+                    setAccessToken(null);
+                    setUser(null);
                 }
             } catch (err) {
                 // Khách chưa đăng nhập hoặc cookie hết hạn
                 setAccessToken(null);
                 setUser(null);
             } finally {
+                // Chỉ tắt loading khi ĐÃ CÓ ĐẦY ĐỦ cả accessToken và user
                 setLoading(false);
             }
         };
@@ -53,8 +71,11 @@ export const AuthProvider = ({ children }) => {
         initAuth();
     }, []);
 
-    // 2. Khi accessToken thay đổi (sau khi login hoặc logout)
+    // 2. Khi accessToken thay đổi sau khi khởi tạo (sau khi login hoặc logout)
     useEffect(() => {
+        // Tránh chạy trùng lặp khi initAuth đang chạy
+        if (loading) return;
+
         if (accessToken) {
             loadUser();
         } else {

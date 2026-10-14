@@ -20,12 +20,20 @@ export async function GetCurrentUser(fetchWithAuth) {
 
 // Cập nhật thông tin user hiện tại
 export async function UpdateUser(fetchWithAuth, userData) {
+    let body = userData;
+    if (!(userData instanceof FormData)) {
+        const formData = new FormData();
+        Object.keys(userData).forEach((key) => {
+            if (userData[key] !== null && userData[key] !== undefined) {
+                formData.append(key, userData[key]);
+            }
+        });
+        body = formData;
+    }
+
     const response = await fetchWithAuth(`${API_URL}/me`, {
         method: "PUT",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
+        body: body,
     });
 
     const result = await response.json();

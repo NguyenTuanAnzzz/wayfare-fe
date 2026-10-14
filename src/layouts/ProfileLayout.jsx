@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SidebarProfile from '../components/SidebarProfile';
 import { useAuth } from '../contexts/AuthContext';
 import { Camera, ShieldCheck } from '@phosphor-icons/react';
+import Alert from '../components/Alert';
+import useUpdateUser from '../hooks/useUpdateUser';
 
 export default function ProfileLayout() {
   const { user } = useAuth();
+  const { loading, error, handleChange, handleSubmit } = useUpdateUser();
+  const fileInputRef = useRef(null);
 
   const getInitials = (name) => {
     if (!name) return 'WF';
@@ -29,11 +33,30 @@ export default function ProfileLayout() {
       <main className="flex-1 py-10 px-6 md:px-12">
         <div className="max-w-6xl mx-auto space-y-8">
           
+          {error && (
+            <Alert variant="error" className="mb-2">
+              {error}
+            </Alert>
+          )}
+
           {/* Top Hero Banner / Account Overview */}
           <div className="bg-white rounded-3xl p-6 md:p-8 border border-stone-200 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div className="flex items-center gap-5">
-              {/* Avatar */}
-              <div className="relative group">
+              
+              {/* Form đổi ảnh đại diện */}
+              <form className="relative group" onSubmit={handleSubmit}>
+                {/* Input tải ảnh lên */}
+                <input
+                  type="file"
+                  id="avatar"
+                  name="avatar"
+                  ref={fileInputRef}
+                  accept="image/*"
+                  className="hidden"
+                  onChange={handleChange}
+                  disabled={loading}
+                />
+
                 {user?.avatarUrl ? (
                   <img
                     src={user.avatarUrl}
@@ -45,15 +68,25 @@ export default function ProfileLayout() {
                     {getInitials(user?.name || "Nguyễn Văn An")}
                   </div>
                 )}
-                {/* Camera Icon Overlay (Static UI) */}
-                <button 
-                  type="button"
-                  className="absolute -bottom-2 -right-2 w-8 h-8 rounded-xl bg-bay-700 text-white flex items-center justify-center shadow-md hover:bg-bay-800 transition-transform active:scale-95"
+
+                {/* Loading Overlay khi đang tải ảnh */}
+                {loading && (
+                  <div className="absolute inset-0 bg-ink/40 rounded-2xl flex items-center justify-center backdrop-blur-xs">
+                    <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  </div>
+                )}
+
+                {/* Nút Camera để chọn ảnh */}
+                <label
+                  htmlFor="avatar"
+                  className={`absolute -bottom-2 -right-2 w-8 h-8 rounded-xl bg-bay-700 text-white flex items-center justify-center shadow-md hover:bg-bay-800 transition-transform active:scale-95 cursor-pointer ${
+                    loading ? 'opacity-50 pointer-events-none' : ''
+                  }`}
                   title="Đổi ảnh đại diện"
                 >
                   <Camera size={16} weight="bold" />
-                </button>
-              </div>
+                </label>
+              </form>
 
               {/* Account Details */}
               <div className="space-y-1">
