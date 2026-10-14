@@ -1,21 +1,17 @@
-
-import { useAuth } from "../contexts/AuthContext";
-import { Refresh } from "../apis/apiAuth";
+import { Refresh } from "./apiAuth";
 
 let refreshPromise = null;
 
-export default function useFetchWithAuth() {
+export function createFetchWithAuth(accessToken, setAccessToken) {
+    return async (url, options = {}) => {
+        const token = accessToken;
 
-    const { accessToken, setAccessToken } = useAuth();
-
-    const fetchWithAuth = async (url, options = {}) => {
-
-        // Lần gọi API đầu tiên
+        // 1. Lần gọi API đầu tiên kèm access token hiện tại
         const response = await fetch(url, {
             ...options,
             headers: {
                 ...options.headers,
-                Authorization: `Bearer ${accessToken}`
+                Authorization: `Bearer ${token}`
             }
         });
 
@@ -24,51 +20,33 @@ export default function useFetchWithAuth() {
             return response;
         }
 
+        // 2. Nếu 401 → tự động refresh token
         try {
-
-            // Nếu chưa có request refresh nào
             if (!refreshPromise) {
-
                 refreshPromise = Refresh()
                     .then((result) => {
-
-                        const newAccessToken =
-                            result.accessToken;
-
+                        const newAccessToken = result.accessToken;
                         setAccessToken(newAccessToken);
-
                         return newAccessToken;
                     })
                     .finally(() => {
-
                         refreshPromise = null;
-
                     });
             }
 
-            // Chờ request refresh hiện tại 
-            const newAccessToken =
-                await refreshPromise;
+            const newAccessToken = await refreshPromise;
 
-            // Gọi lại API cũ
-            const retryResponse = await fetch(url, {
+            // 3. Gọi lại API cũ với token mới
+            return await fetch(url, {
                 ...options,
                 headers: {
                     ...options.headers,
-                    Authorization:
-                        `Bearer ${newAccessToken}`
+                    Authorization: `Bearer ${newAccessToken}`
                 }
             });
-
-            return retryResponse;
-
         } catch (error) {
-
             setAccessToken(null);
-
             throw error;
         }
     };
-
-    return fetchWithAuth;
 }

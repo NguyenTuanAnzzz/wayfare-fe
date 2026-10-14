@@ -153,7 +153,7 @@ export default function Header() {
                     </Link>
 
                     <Link
-                      to="/profile"
+                      to="/profile/bookings"
                       className="flex items-center gap-3 px-4 py-2.5 text-sm text-stone-700 hover:text-bay-700 hover:bg-stone-50 transition-colors font-medium"
                     >
                       <Ticket size={18} weight="duotone" className="text-bay-700" />
