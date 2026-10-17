@@ -11,7 +11,6 @@ import useUpdateUser from '../hooks/useUpdateUser';
 export default function ProfileLayout() {
   const { user } = useAuth();
   const { loading, error, handleChange, handleSubmit } = useUpdateUser();
-  const fileInputRef = useRef(null);
 
   const getInitials = (name) => {
     if (!name) return 'WF';
@@ -32,7 +31,7 @@ export default function ProfileLayout() {
 
       <main className="flex-1 py-10 px-6 md:px-12">
         <div className="max-w-6xl mx-auto space-y-8">
-          
+
           {error && (
             <Alert variant="error" className="mb-2">
               {error}
@@ -42,7 +41,7 @@ export default function ProfileLayout() {
           {/* Top Hero Banner / Account Overview */}
           <div className="bg-white rounded-3xl p-6 md:p-8 border border-stone-200 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div className="flex items-center gap-5">
-              
+
               {/* Form đổi ảnh đại diện */}
               <form className="relative group" onSubmit={handleSubmit}>
                 {/* Input tải ảnh lên */}
@@ -50,7 +49,6 @@ export default function ProfileLayout() {
                   type="file"
                   id="avatar"
                   name="avatar"
-                  ref={fileInputRef}
                   accept="image/*"
                   className="hidden"
                   onChange={handleChange}
@@ -79,9 +77,8 @@ export default function ProfileLayout() {
                 {/* Nút Camera để chọn ảnh */}
                 <label
                   htmlFor="avatar"
-                  className={`absolute -bottom-2 -right-2 w-8 h-8 rounded-xl bg-bay-700 text-white flex items-center justify-center shadow-md hover:bg-bay-800 transition-transform active:scale-95 cursor-pointer ${
-                    loading ? 'opacity-50 pointer-events-none' : ''
-                  }`}
+                  className={`absolute -bottom-2 -right-2 w-8 h-8 rounded-xl bg-bay-700 text-white flex items-center justify-center shadow-md hover:bg-bay-800 transition-transform active:scale-95 cursor-pointer ${loading ? 'opacity-50 pointer-events-none' : ''
+                    }`}
                   title="Đổi ảnh đại diện"
                 >
                   <Camera size={16} weight="bold" />

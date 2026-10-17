@@ -5,6 +5,7 @@ export const PROFILE_SIDEBAR_ITEMS = [
     description: 'Họ tên, liên hệ, ngày sinh',
     path: '/profile',
     icon: 'User',
+    roles: ['CUSTOMER', 'STAFF', 'ADMIN'],
   },
   {
     key: 'bookings',
@@ -12,6 +13,7 @@ export const PROFILE_SIDEBAR_ITEMS = [
     description: 'Lịch trình, vé & nhân viên hỗ trợ',
     path: '/profile/bookings',
     icon: 'Ticket',
+    roles: ['CUSTOMER'],
   },
   {
     key: 'security',
@@ -19,5 +21,22 @@ export const PROFILE_SIDEBAR_ITEMS = [
     description: 'Mật khẩu & xác thực hai bước',
     path: '/profile/security',
     icon: 'LockKey',
+    roles: ['CUSTOMER', 'STAFF', 'ADMIN'],
+  },
+  {
+    key: 'admin-dashboard',
+    label: 'Bảng điều khiển Admin',
+    description: 'Quản trị hệ thống & doanh thu',
+    path: '/admin',
+    icon: 'SquaresFour',
+    roles: ['ADMIN'],
+  },
+  {
+    key: 'staff-dashboard',
+    label: 'Bàn làm việc Staff',
+    description: 'Tiếp nhận pool & xử lý booking',
+    path: '/staff',
+    icon: 'SquaresFour',
+    roles: ['STAFF'],
   },
 ];

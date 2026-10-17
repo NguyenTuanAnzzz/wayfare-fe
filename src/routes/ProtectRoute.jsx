@@ -19,7 +19,7 @@ export default function ProtectRoute() {
         return <Navigate to="/login" replace />;
     }
 
-    if (!user.phone || !user.dob) {
+    if (user.role === 'CUSTOMER' && (!user.phone || !user.dob)) {
         return <Navigate to="/update-phone-and-dob" replace />;
     }
 
